@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Autobioscrypt</title>
+
+    <!--<script src="/node_modules/web3/dist/web3.min.js"></script>-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
+
+    <link  type="text/css" href="views/style.css"/>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    
+
+
+    
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+      
+
+    
+
+     <!--font-->
+    <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/ftf.css">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+
+    
+</head>
+
+
+
+
+<body>
+   <div id="autobio-container">
+
+<br><br><br><br><br><br>        
+<div class="jumbotron d-flex align-items-center">
+<div class="container">
+    <div class="text-center">
+    <h1>Autobio !</h1> <br>
+        <form name="loginform" action="http://localhost:3000/login" method="get">
+                    
+                    <div id="uname" class="form-group col-xs-6" style="font-family: sans-serif;" >
+                        <label for="username">Username</label>
+                        <input v-model="identitySeedInput1" type="text" required>
+                    </div>
+             
+                    <div class="form-group col-xs-6" style="font-family: sans-serif;">    
+                        <label for="password">Password</label>
+                        <input v-model="identitySeedInput2" type="password" required>
+                   </div>
+
+                    <!--<div class="form-group-lg col-xs-12">
+                    
+                        <input  style="color: black;font-family: sans-serif;"  class="btn btn-info" type="submit" id="submit" value="Login"/>
+                   </div>-->
+                   <div class="ftf-control">
+                   <div class="ftf-input-button" v-on:click="identityButtonClicked()">login</div>
+                    </div>
+                        
+
+
+
+        </form>
+    </div>    
+</div>
+</div>
+</div>
+    <link rel="stylesheet" type="text/css" href="css/ftf.css">
+<!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- Our bundled code -->
+    <script src="js/bundle.js"></script>
+
+
+    <!-- The code linking our webapp to the code we wrote -->
+    <script src="js/autobio-web.js"></script>
+
+</body>
+
+</html>

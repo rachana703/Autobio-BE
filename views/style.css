@@ -1,0 +1,19 @@
+div.container {
+    position: relative;
+    font-size: 2rem;
+    font-family: "Cookie";
+    color: white; 
+    width:700px;
+    margin: auto;
+    padding: 40px 40px 40px 40px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+}

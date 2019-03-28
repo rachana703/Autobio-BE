@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <!--font-->
+    <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/ftf.css">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+    
+    <!--editor-->
+        <!-- include libraries(jQuery, bootstrap) -->
+          <!-- include libraries(jQuery, bootstrap) -->
+      <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+      <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+      <!-- include summernote css/js -->
+      <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+
+
+      <!--jquery-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script>
+        $(document).ready(function(){
+          
+            $("#create").hide();
+          
+                $("#generate").click(function(){
+                $("#create").show();
+          
+                
+              });
+        });
+    </script>
+
+    <title>Autobioscrypt</title>
+</head>
+
+<body>
+
+    <div id="autobio-container">
+
+        <!-- This is where our content will be inserted -->
+
+        <div class="ftf-header">
+            <div class = "brand-logo left" style="font-family: Cookie; font-size: 50px; color: white"> Autobioscrypt</div>
+            <div class="filter" style="color: white ;">Filters</div>
+            <div class="search"><input type="textbox" v-model="search_t" name="search_t"><div class="ftf-input-button" v-on:click="menuClicked('search')">Search</div></div>
+            <!--<div class="ftf-button ftf-primary">Your identity: {{autobio.currentIdentity.publicKey}}</div>-->
+            <div class="ftf-input-button" v-on:click="logoutClicked()">Logout</div>
+        </div>
+
+        <!-- Page container -->
+        <div class="ftf-page-container">
+
+            <!-- Menu -->
+            <div class="ftf-menu">
+
+                <div class="ftf-menu-item" v-on:click="menuClicked('identity')">
+                    <i class="fas fa-user"></i>
+                    <div class="ftf-menu-item-link">My Account</div>
+                </div>
+
+                <hr>
+
+                <div id="create" class="ftf-menu-item" v-on:click="menuClicked('assets')">
+                        <!--<i class="fas fa-industry"></i>-->
+                    <div class="ftf-menu-item-link">Create</div>
+                </div>
+
+                <div id="browse" class="ftf-menu-item" v-on:click="menuClicked('all-assets')">
+                   <!-- <i class="fas fa-utensils"></i>-->
+                    <div class="ftf-menu-item-link">Browse</div>
+                </div>
+
+            </div>
+
+            <!-- Content container -->
+            <div class="ftf-content-container">
+
+
+                <!-- Identity pane -->
+
+                <div v-if="isActive('identity')" class="ftf-content-pane">
+                    <!--    
+                    <div class="ftf-box">
+                        <h2>Your Identity</h2>
+                        <hr>
+                        <p>In this proof of concept, your identity simply is your keypair.</p>
+                    </div>
+                    -->
+
+
+                    <div class="ftf-box ftf-full ftf-wide">
+                        <h2>Welcome </h2>
+                        <hr>
+                        <p>Login wih your username and password or create new username password below.</p>
+                        <div class="ftf-control">
+                            <div></br>
+                              <h2> Username:</h2> <input v-model="identitySeedInput1" type="text"></br>
+                             </br>
+                            </br>
+                               <h2>Password:</h2> <input v-model="identitySeedInput2" type="text"></br>
+                            </br></br>
+                            <div id="generate" class="ftf-input-button" v-on:click="identityButtonClicked()">Continue</div>
+                             </div>
+                         </div>
+                        </div>
+
+                     </div>
+
+                <!-- Asset pane -->
+                <div v-if="isActive('assets')" class="ftf-content-pane">
+
+                    <!--<div class="ftf-box">
+                        <h2>Books</h2>
+                        <hr>
+                        <p>In this proof of concept, the assets in our transactions are books which can be viewed by everyone.</p>
+                    </div>-->
+
+                    <div class="ftf-box ftf-full ftf-wide">
+                        <h2>Create a new book</h2>
+                        <p>Enter the following details:</p>
+                        <div class="ftf-control">
+                            <div>
+                            <input v-model="assetName" type="text" placeholder="Name"></div></br>
+                            <div>
+                            <input type="textarea" v-model="assetDescription" rows="30" cols="40" name="assetDescription" placeholder="Description"></div></br>
+                            <div>
+                            <select name="assetGenre" v-model="assetGenre" placeholder="Genre">
+                                <option>Action</option>
+                                <option>Thriller</option>
+                                <option>Horror</option>
+                                <option>Inspirational</option>
+                                <option>Fictional</option>
+                            </select></div></br>
+                          <!-- <input type="file" v-model="assetCover" name="assetCover" accept="image/*">-->
+                            <div class="ftf-input-button" v-on:click="assetButtonClicked()">create</div></br>
+                        </div>
+                        <br>
+                        <h2>Edit Your Books</h2>
+                        <table>
+                            <!--<thead>
+                                <tr>
+                                    <th>Cover</th>
+                                    <th>Bookname</th>
+                                </tr>
+                            </thead>-->
+
+                            <tbody>
+                                <tr v-for="asset in assets" v-on:click="transactionClicked(asset.id, true)">
+                                    <td><img src="img/hp.jpeg" height="100" width="120"><br><b><center>{{asset.asset.data.bookname}}</center></b></td>
+                                    
+                                    <td width="500">{{asset.asset.data.description}}</td>
+                                    <td>{{asset.asset.data.genre}}</td>
+                                    
+                                </tr>
+                                <tr v-if="assets.size == 0">
+                                    <td colspan="2" style="text-align: left">No Books.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <!-- Transactions pane -->
+                <div v-if="isActive('transactions')" class="ftf-content-pane">
+
+                    <!--<div class="ftf-box ftf-wide">
+                        <h2>Transaction chain</h2>
+                        <hr>
+                        <p>Each asset on the BigchainDB has a list of transactions that have been performed upon it.</p>
+                    </div>-->
+
+                    <div class="ftf-box ftf-wide ftf-box-no-margin" v-if="myAssets">
+                        <div>
+                        <h1><b>{{activeTransaction.asset.data.bookname}}</b></h1></br>
+                        <!--<p>Enter an action to perform:</p>-->
+                         </div>   
+                        <div class="ftf-control">
+                            
+                            <div>                      
+                            </br><input type="text" placeholder="Chapter name" v-model="actionInput1" style="align: center; width: 800px;">
+                           
+                            <!--<input type="text" v-model="actionInput2">-->
+                            
+                            <div class="form-group" style="width: 800px; padding-top:20px;">
+                            <textarea rows="50" cols="50" v-model="actionInput2" id="summernote" class="form-control" placeholder="Page Content" name="content" required></textarea>
+
+                            </div>
+                            
+                            <div class="ftf-input-button" v-on:click="actionButtonClicked()">Publish</div>
+
+                            <div class="ftf-input-button" v-on:click="previewButtonClicked()">Preview</div>
+
+                            <!--<div class="ftf-box ftf-wide ftf-box-no-margin">
+                            <span class="ftf-full" v-for="transaction in transactionsForAsset">
+                                
+                                <div>
+                                    <h2>{{transaction.metadata.action}}</h2>
+                                    <p>{{new Date(transaction.metadata.date).toLocaleString()}}</p>
+                                </div>
+                                </span>
+                            </div>-->
+
+                        </div>
+
+                        </div>
+                    </div>
+                
+                    <span class="ftf-full" v-for="transaction in transactionsForAsset">
+                    
+                    <div class="ftf-boxnew">
+
+                        <center><h1>{{transaction.metadata.action}}</h1></center></br></br></br>
+                        <p>{{new Date(transaction.metadata.date).toLocaleString()}}</p></br></br></br>
+                          {{transaction.metadata.action2}}
+
+                        
+
+                        
+                    </div>
+                    </span>
+                    
+                </div>
+
+
+
+                <!-- All assets pane -->
+                <div v-if="isActive('all-assets')" class="ftf-content-pane">
+
+                
+                    <div class="ftf-box ftf-full">
+
+                        <table>
+                            <tbody>
+                                <tr v-for="asset of allAssets" v-on:click="transactionClicked(asset.id, false)">
+                                    <td><img src="img/hp.jpeg" height="100" width="90">
+                                        <br><b><center>{{asset.data.bookname}}</center></b>
+                                    </td>
+                                    <td>{{asset.data.description}}</td>
+                                    <td>{{asset.data.genre}}</td>
+                                    
+
+                                    <!--<td>{{asset.id}}</td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+
+                <!--Search pane-->
+
+
+                <div v-if="isActive('search')" class="ftf-content-pane">
+                <div class="ftf-box ftf-full">
+
+                        <table>
+                            <tbody>
+                                <tr v-for="asset of allAssets" v-on:click="transactionClicked(asset.id, false)">
+                                    <td><img src="img/hp.jpeg" height="100" width="90">
+                                        <br><b><center>{{asset.data.bookname}}</center></b>
+                                    </td>
+                                    <td>{{asset.data.description}}</td>
+                                    <td>{{asset.data.genre}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+ <script>
+    $(document).ready(function() {
+      
+          $('#summernote').summernote({
+              height: 150,                 // set editor height
+              minHeight: null,             // set minimum height of editor
+              maxHeight: null,             // set maximum height of editor
+              focus: true                  // set focus to editable area after initializing summernote
+        });
+
+
+    });
+  
+  </script>
+
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <!-- Our bundled code -->
+    <script src="js/bundle.js"></script>
+
+
+    <!-- The code linking our webapp to the code we wrote -->
+    <script src="js/autobio-web.js"></script>
+
+</body>
+
+</html>
