@@ -128,12 +128,17 @@ class Autobio{
         this.connection.searchAssets('AutobioAsset')
         .then(response => {
             var obj=JSON.stringify(response);
+            console.log(obj);
+            //console.log(obj.data[0]);
+            var obj2=JSON.parse(obj);
+            //console.log(obj2);
+            console.log(obj2.data[1]);
             var txt="";
             for (var x in obj) {
                 txt +=obj[x].bookname;
                 
             }
-            console.log(txt);
+            //console.log(txt);
             
         });
 

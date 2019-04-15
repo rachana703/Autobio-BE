@@ -7,6 +7,7 @@ var app = express();  //var app as object
 app.use('/css', express.static(__dirname + '/css'));
 app.use('/js', express.static(__dirname + '/js'));
 app.use('/img', express.static(__dirname + '/img'));
+app.use(express.static('static'));
 
 app.use(express.static('/public'));
 //Here we are configuring express to use body-parser as middle-ware.

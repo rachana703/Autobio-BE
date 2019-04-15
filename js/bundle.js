@@ -154,6 +154,7 @@ function fromByteArray (uint8) {
 },{}],2:[function(require,module,exports){
 
 },{}],3:[function(require,module,exports){
+(function (Buffer){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -1932,7 +1933,8 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":1,"ieee754":6}],4:[function(require,module,exports){
+}).call(this,require("buffer").Buffer)
+},{"base64-js":1,"buffer":3,"ieee754":6}],4:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -6002,12 +6004,17 @@ class Autobio{
         this.connection.searchAssets('AutobioAsset')
         .then(response => {
             var obj=JSON.stringify(response);
+            console.log(obj);
+            //console.log(obj.data[0]);
+            var obj2=JSON.parse(obj);
+            //console.log(obj2);
+            console.log(obj2.data[1]);
             var txt="";
             for (var x in obj) {
                 txt +=obj[x].bookname;
                 
             }
-            console.log(txt);
+            //console.log(txt);
             
         });
 
@@ -23353,8 +23360,8 @@ module.exports = function (password, salt, iterations, keylen) {
   }
 }
 
-}).call(this,{"isBuffer":require("../../../../../../Users/parth/AppData/Roaming/npm/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../Users/parth/AppData/Roaming/npm/node_modules/browserify/node_modules/is-buffer/index.js":8}],53:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../Users/parth/AppData/Roaming/npm/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../Users/parth/AppData/Roaming/npm/node_modules/browserify/node_modules/is-buffer/index.js":8}],53:[function(require,module,exports){
 var md5 = require('create-hash/md5')
 var RIPEMD160 = require('ripemd160')
 var sha = require('sha.js')

@@ -18,6 +18,7 @@ var autobioApp = new Vue({
         actionInput2: "",
         otherFirmInput: "",
         search_t : "",
+        myAssets : "",
         activeTransaction: {
             "asset": {
                 "data": {
@@ -178,16 +179,17 @@ var autobioApp = new Vue({
 
         
         searchClicked() {
-            console.log(autobioApp.search_t);
+            //console.log(autobioApp.search_t);
             console.log("inside transaction search clicked");
             //console.log(search_key);
             this.autobio.searchBook(autobioApp.search_t);
             //this.loadAllAssets();
 
-           /* this.myAssets = myAssets;
-            this.autobio.connection.getTransaction(id).then(response => autobioApp.activeTransaction = response);
+           //this.myAssets = myAssets;
+            /*this.autobio.connection.getTransaction(id).then(response => autobioApp.activeTransaction = response);
             this.loadTransactionsForAsset(id);
             this.setActive('transactions');*/
+ 
         },
 
         otherFirmButtonClicked() {

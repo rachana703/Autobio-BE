@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
 
+    <link rel="shortcut icon" href="">
     <!--font-->
     <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
 
@@ -28,13 +29,15 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script>
         $(document).ready(function(){
-          
+          $("#searching").hide();
             $("#create").hide();
-          
+            
+
+
                 $("#generate").click(function(){
-                $("#create").show();
-          
-                
+                    $("#create").show();
+                    $("#search").show();
+                    
               });
         });
     </script>
@@ -44,14 +47,19 @@
 
 <body>
 
+
+
+
     <div id="autobio-container">
 
         <!-- This is where our content will be inserted -->
 
         <div class="ftf-header">
             <div class = "brand-logo left" style="font-family: Cookie; font-size: 50px; color: white"> Autobioscrypt</div>
-            <div class="filter" style="color: white ;">Filters</div>
-            <div class="search"><input type="textbox" v-model="search_t" name="search_t"><div class="ftf-input-button" v-on:click="menuClicked('search')">Search</div></div>
+            <!--<div id="filter" style="color: white ;">Filters</div>-->            
+            <div id="searching"><input type="textbox" v-model="search_t" name="search_t">
+
+                <div id="search" class="ftf-input-button" v-on:click="menuClicked('search')">Search</div></div>
             <!--<div class="ftf-button ftf-primary">Your identity: {{autobio.currentIdentity.publicKey}}</div>-->
             <div class="ftf-input-button" v-on:click="logoutClicked()">Logout</div>
         </div>
@@ -103,11 +111,12 @@
                         <p>Login wih your username and password or create new username password below.</p>
                         <div class="ftf-control">
                             <div></br>
-                              <h2> Username:</h2> <input v-model="identitySeedInput1" type="text"></br>
+                              <h2> Username:</h2> <input v-model="identitySeedInput1" type="text" required></br>
                              </br>
                             </br>
-                               <h2>Password:</h2> <input v-model="identitySeedInput2" type="text"></br>
+                               <h2>Password:</h2> <input v-model="identitySeedInput2" type="text" required></br>
                             </br></br>
+                            <!--<input class="ftf-input-button" type="submit" value="click here to generate your unique keypair">-->
                             <div id="generate" class="ftf-input-button" v-on:click="identityButtonClicked()">Continue</div>
                              </div>
                          </div>
@@ -129,11 +138,11 @@
                         <p>Enter the following details:</p>
                         <div class="ftf-control">
                             <div>
-                            <input v-model="assetName" type="text" placeholder="Name"></div></br>
+                            <input v-model="assetName" type="text" placeholder="Name" required></div></br>
                             <div>
-                            <input type="textarea" v-model="assetDescription" rows="30" cols="40" name="assetDescription" placeholder="Description"></div></br>
+                            <input type="textarea" v-model="assetDescription" rows="30" cols="40" name="assetDescription" placeholder="Description" required></div></br>
                             <div>
-                            <select name="assetGenre" v-model="assetGenre" placeholder="Genre">
+                            <select name="assetGenre" v-model="assetGenre" placeholder="Genre" required>
                                 <option>Action</option>
                                 <option>Thriller</option>
                                 <option>Horror</option>
@@ -187,7 +196,7 @@
                         <div class="ftf-control">
                             
                             <div>                      
-                            </br><input type="text" placeholder="Chapter name" v-model="actionInput1" style="align: center; width: 800px;">
+                            </br><input type="text" placeholder="Chapter name" v-model="actionInput1" style="align: center; width: 800px;" required>
                            
                             <!--<input type="text" v-model="actionInput2">-->
                             
